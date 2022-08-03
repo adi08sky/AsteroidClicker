@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 102523369}
   - component: {fileID: 102523368}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de940ae885121774797f86f213103162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnablePrefab: {fileID: 395670729}
+  spawnablePrefab: {fileID: 4230808719574459048, guid: 7cf1118d1790c9e45a70833a766e8753, type: 3}
+  countOfAsteroids: 0
 --- !u!4 &102523369
 Transform:
   m_ObjectHideFlags: 0
@@ -168,11 +169,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &395670729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4230808719574459048, guid: 7cf1118d1790c9e45a70833a766e8753, type: 3}
-  m_PrefabInstance: {fileID: 4230808719346701921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
