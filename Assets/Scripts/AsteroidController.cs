@@ -13,7 +13,7 @@ public class AsteroidController : MonoBehaviour
     float lifeTime;
     int lifePoints = 4;
 
-    public bool doubleClicked = false;
+    bool doubleClicked = false;
     float clickDelay = 0.5f;
     float passedTimeClick = 0.5f;
 
