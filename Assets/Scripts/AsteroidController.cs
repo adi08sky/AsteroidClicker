@@ -34,6 +34,8 @@ public class AsteroidController : MonoBehaviour
         asteroidRenderer.material = materials[colorNumber];
 
         passedTimeClick += Time.deltaTime;
+
+        if (GameManager.gameManager.endGame) AsteroidDestroy();
     }
 
     private void Start()

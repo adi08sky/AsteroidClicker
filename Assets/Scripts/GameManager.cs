@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public GameObject SpawnablePrefab;
-    public GameObject RestartBtn;
+    public GameObject WinPanel;
     public Text PointsTxt;
     int randomQuantity;
     public int countOfAsteroids;
     public int points = 0;
-    const int maxPoints = 15;
+    const int maxPoints = 3;
+    public bool endGame = false;
 
     // Plane Properties
     float x_dim = 9;
@@ -33,15 +34,19 @@ public class GameManager : MonoBehaviour
             Spawn();
         }
 
-        RestartBtn.SetActive(false);
+        WinPanel.SetActive(false);
     }
 
     private void Update()
     {
         PointsTxt.text = "Punkty:" + points.ToString();
-        MaintenanceOfAsteroidCount();
-        MouseClick();
-        VictoryCheck();
+        if (!endGame)
+        {
+            MaintenanceOfAsteroidCount();
+            MouseClick();
+            VictoryCheck();
+        }
+
     }
 
     void Spawn()
@@ -87,7 +92,8 @@ public class GameManager : MonoBehaviour
     {
         if (points >= maxPoints)
         {
-            RestartBtn.SetActive(true); 
+            endGame = true;
+            WinPanel.SetActive(true);
         }
     }
 
