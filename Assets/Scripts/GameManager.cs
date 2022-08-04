@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     int randomQuantity;
     int countOfAsteroids;
     int points = 0;
-    const int maxPoints = 3;
+    const int maxPoints = 15;
     public bool endGame = false;
 
     // Plane Properties
