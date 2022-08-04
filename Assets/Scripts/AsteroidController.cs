@@ -26,6 +26,7 @@ public class AsteroidController : MonoBehaviour
             if (lifePoints == 0)
             {
                 AsteroidDestroy();
+                GameManager.gameManager.points++;
                 Debug.Log("Obiekt zniszczony");
             }
         }

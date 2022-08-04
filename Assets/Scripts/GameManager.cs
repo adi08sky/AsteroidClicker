@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
-    public GameObject spawnablePrefab;
-    int quantity;
+    public GameObject SpawnablePrefab;
+    public GameObject RestartBtn;
+    public Text PointsTxt;
+    int randomQuantity;
     public int countOfAsteroids;
+    public int points = 0;
+    const int maxPoints = 15;
 
     // Plane Properties
     float x_dim = 9;
@@ -25,22 +32,42 @@ public class GameManager : MonoBehaviour
         {
             Spawn();
         }
-    }
 
-    private void FixedUpdate()
-    {
-        quantity = Random.Range(1, 6);
-
-        if (countOfAsteroids < 5)
-        {
-            for (int i = 0; i < quantity; i++)
-            {
-                Spawn();
-            }
-        }        
+        RestartBtn.SetActive(false);
     }
 
     private void Update()
+    {
+        PointsTxt.text = "Punkty:" + points.ToString();
+        MaintenanceOfAsteroidCount();
+        MouseClick();
+        VictoryCheck();
+    }
+
+    void Spawn()
+    {
+        GameObject obj = Instantiate(SpawnablePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+
+        var x_rand = Random.Range(-x_dim, x_dim);
+        var y_rand = Random.Range(-y_dim, y_dim);
+
+        obj.transform.position = new Vector3(x_rand, y_rand, z_dim);
+        countOfAsteroids++;
+    }
+
+    private void MaintenanceOfAsteroidCount()
+    {
+        randomQuantity = Random.Range(1, 6);
+
+        if (countOfAsteroids < 5)
+        {
+            for (int i = 0; i < randomQuantity; i++)
+            {
+                Spawn();
+            }
+        }
+    }
+    void MouseClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -56,14 +83,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Spawn()
+    void VictoryCheck()
     {
-        GameObject obj = Instantiate(spawnablePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        if (points >= maxPoints)
+        {
+            RestartBtn.SetActive(true); 
+        }
+    }
 
-        var x_rand = Random.Range(-x_dim, x_dim);
-        var y_rand = Random.Range(-y_dim, y_dim);
-
-        obj.transform.position = new Vector3(x_rand, y_rand, z_dim);
-        countOfAsteroids++;
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }
