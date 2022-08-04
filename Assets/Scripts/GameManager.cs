@@ -8,12 +8,15 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
+
     public GameObject SpawnablePrefab;
     public GameObject WinPanel;
     public Text PointsTxt;
+
+    // Game Properties
     int randomQuantity;
-    public int countOfAsteroids;
-    public int points = 0;
+    int countOfAsteroids;
+    int points = 0;
     const int maxPoints = 3;
     public bool endGame = false;
 
@@ -37,18 +40,21 @@ public class GameManager : MonoBehaviour
         WinPanel.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
         PointsTxt.text = "Punkty:" + points.ToString();
         if (!endGame)
         {
             MaintenanceOfAsteroidCount();
-            MouseClick();
+            OnMouseClick();
             VictoryCheck();
         }
 
     }
 
+    /// <summary>
+    /// Spawns an asteroid in a random location
+    /// </summary>
     void Spawn()
     {
         GameObject obj = Instantiate(SpawnablePrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -60,6 +66,9 @@ public class GameManager : MonoBehaviour
         countOfAsteroids++;
     }
 
+    /// <summary>
+    /// Maintains a certain number of asteroids on the screen
+    /// </summary>
     private void MaintenanceOfAsteroidCount()
     {
         randomQuantity = Random.Range(1, 6);
@@ -72,7 +81,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    void MouseClick()
+
+    /// <summary>
+    /// On the object selected and clicked on with the mouse, calls the OnClick() method.
+    /// </summary>
+    void OnMouseClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -82,10 +95,20 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.transform.tag == "Asteroid")
                 {
-                    hit.collider.GetComponent<AsteroidController>().Click();
+                    hit.collider.GetComponent<AsteroidController>().OnClick();
                 }
             }
         }
+    }
+
+    public void IncreasePoints()
+    {
+        points++;
+    }
+
+    public void DecreaseAsteroids()
+    {
+        countOfAsteroids--;
     }
 
     void VictoryCheck()
@@ -97,6 +120,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restart the game by reloading the scene
+    /// </summary>
     public void Restart()
     {
         SceneManager.LoadScene(0);

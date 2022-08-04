@@ -19,18 +19,6 @@ public class AsteroidController : MonoBehaviour
 
     private void Update()
     {
-        if (doubleClicked)
-        {
-            if (colorNumber < 3) colorNumber++;
-            lifePoints--;
-            if (lifePoints == 0)
-            {
-                AsteroidDestroy();
-                GameManager.gameManager.points++;
-                Debug.Log("Obiekt zniszczony");
-            }
-        }
-
         asteroidRenderer.material = materials[colorNumber];
 
         passedTimeClick += Time.deltaTime;
@@ -51,7 +39,7 @@ public class AsteroidController : MonoBehaviour
     public void AsteroidDestroy()
     {
         Destroy(this.gameObject);
-        GameManager.gameManager.countOfAsteroids--;
+        GameManager.gameManager.DecreaseAsteroids();
     }
 
     public void Rotation()
@@ -65,7 +53,10 @@ public class AsteroidController : MonoBehaviour
         doubleClicked = false;
     }
 
-    public void Click()
+    /// <summary>
+    /// If you double click change color and takes life points until destroing it
+    /// </summary>
+    public void OnClick()
     {
         if (passedTimeClick < clickDelay)
         {
@@ -75,7 +66,21 @@ public class AsteroidController : MonoBehaviour
         {
             passedTimeClick = 0;
         }
+
         StartCoroutine(ClickReset());
+
+        if (doubleClicked)
+        {
+            if (colorNumber < 3) colorNumber++;
+            lifePoints--;
+
+            if (lifePoints == 0)
+            {
+                AsteroidDestroy();
+                GameManager.gameManager.IncreasePoints();
+                Debug.Log("Obiekt zniszczony");
+            }
+        }
     }
 
 }
