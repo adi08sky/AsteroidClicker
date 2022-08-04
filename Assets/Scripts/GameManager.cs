@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        PointsTxt.text = "Punkty:" + points.ToString();
+        PointsTxt.text = "Punkty: " + points.ToString();
         if (!endGame)
         {
             MaintenanceOfAsteroidCount();
