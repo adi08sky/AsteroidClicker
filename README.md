@@ -1,3 +1,3 @@
 # AsteroidClicker
-Zadanie testowe Unity
+Zadanie testowe Unity \n
 Rekrutacja: Unity Developer, Grupa Kapitałowa VOX
