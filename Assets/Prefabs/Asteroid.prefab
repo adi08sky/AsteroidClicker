@@ -110,3 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098721a5f546ea141a6105564e9e8794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidRenderer: {fileID: 4230808719574459050}
+  materials:
+  - {fileID: 2100000, guid: 9f7f0e2938e3e4a4f8c6b2df6fa91515, type: 2}
+  - {fileID: 2100000, guid: d734a754db2412a4a85a935741d4bfd5, type: 2}
+  - {fileID: 2100000, guid: ae3a6d980906a104487845c3c1e61e45, type: 2}
+  - {fileID: 2100000, guid: fe78670a68705b64db3136e57c4ee06d, type: 2}
+  doubleClicked: 0

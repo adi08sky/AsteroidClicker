@@ -4,10 +4,36 @@ using UnityEngine;
 
 public class AsteroidController : MonoBehaviour
 {
+    public Renderer asteroidRenderer;
+    public Material[] materials;
+    int colorNumber = 0;
     float rotateX;
     float rotateY;
     float rotateZ;
     float lifeTime;
+    int lifePoints = 4;
+
+    public bool doubleClicked = false;
+    float clickDelay = 0.5f;
+    float passedTimeClick = 0.5f;
+
+    private void Update()
+    {
+        if (doubleClicked)
+        {
+            if (colorNumber < 3) colorNumber++;
+            lifePoints--;
+            if (lifePoints == 0)
+            {
+                AsteroidDestroy();
+                Debug.Log("Obiekt zniszczony");
+            }
+        }
+
+        asteroidRenderer.material = materials[colorNumber];
+
+        passedTimeClick += Time.deltaTime;
+    }
 
     private void Start()
     {
@@ -21,7 +47,6 @@ public class AsteroidController : MonoBehaviour
 
     public void AsteroidDestroy()
     {
-        Debug.Log("Obiekt zniszczony");
         Destroy(this.gameObject);
         GameManager.gameManager.countOfAsteroids--;
     }
@@ -30,4 +55,24 @@ public class AsteroidController : MonoBehaviour
     {
         transform.Rotate(new Vector3(rotateX, rotateY, rotateZ));
     }
+
+    private IEnumerator ClickReset()
+    {
+        yield return new WaitForEndOfFrame();
+        doubleClicked = false;
+    }
+
+    public void Click()
+    {
+        if (passedTimeClick < clickDelay)
+        {
+            doubleClicked = true;
+        }
+        else
+        {
+            passedTimeClick = 0;
+        }
+        StartCoroutine(ClickReset());
+    }
+
 }
