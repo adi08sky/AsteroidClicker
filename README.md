@@ -1,2 +1,2 @@
 # AsteroidClicker
-Zadanie testowe Unity.
+Aplikacja testowa Unity.
