@@ -10,5 +10,8 @@ Założenia:
 6. Zniszczenie asteroidy powoduje zdobycie punktu. Obecna liczba punktów jest wyświetlana na górze ekranu.
 7. Gra kończy się po uzyskaniu 15 punktów, z wyświetlonym oknem Ul zawierającym komunikat "Wygrana!" i przyciskiem [Powtórz] rozpoczynającym grę od nowa.
 
+Aktualny build aplikacji do pobrania tutaj:
+https://drive.google.com/file/d/10vILsPEhHoic0zhQRJQd8JRbha6U6wjR/view?usp=sharing
+
 ![image](https://user-images.githubusercontent.com/46719355/193827810-0902f7bf-5620-4279-bcf5-30de4403ba86.png)
 ![image](https://user-images.githubusercontent.com/46719355/193827927-d046cfaa-d07d-4967-bef2-b265e6fc117a.png)
